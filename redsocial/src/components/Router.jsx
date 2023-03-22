@@ -16,10 +16,10 @@ const Router = () => {
     <BrowserRouter>
         <NavBar/>
         <Routes>
-            <Route path="/" element={ useElement(Home) } />
+            <Route path="/" element={ useElement(<Home/>, <NotFound/>) } />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/perfil" element={useElement(Perfil)} />
+            <Route path="/perfil" element={useElement(<Perfil/>, <NotFound/>)} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     </BrowserRouter>

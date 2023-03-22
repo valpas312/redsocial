@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import useAxios from "../hooks/useAxios";
-import { Button, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Input, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { contexto } from "../App";
 
@@ -45,7 +45,15 @@ const Login = () => {
   };
 
   return (
-    <>
+    <Box
+      w="100%"
+      h="100%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap="2rem"
+    >
       <Text
         fontSize="4xl"
         fontWeight="bold"
@@ -55,7 +63,15 @@ const Login = () => {
       >
         Login
       </Text>
-      <form onSubmit={handleSubmit}>
+      <Box 
+      as="form" 
+      onSubmit={handleSubmit}
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap="2rem"
+      >
         <div>
           <label htmlFor="name">Name:</label>
           <Input
@@ -79,8 +95,8 @@ const Login = () => {
         <Button colorScheme="teal" variant="outline" type="submit">
           Login
         </Button>
-      </form>
-    </>
+      </Box>
+    </Box>
   );
 };
 

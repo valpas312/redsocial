@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Posts from './Posts'
+import { BoxStyled } from '../components/StyledChakra'
 
 const Home = () => {
-  return <>
+  return <BoxStyled>
     <h1>Home</h1>
-    <Link to="/perfil">Ir al perfil</Link>
-  </>
+    <Posts/>
+  </BoxStyled>
 }
 
 export default Home
