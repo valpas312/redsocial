@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import NotFound from '../pages/NotFound';
 import Perfil from '../pages/Perfil';
+import Post from '../pages/Post';
 
 import NavBar from './NavBar';
 
@@ -16,10 +17,11 @@ const Router = () => {
     <BrowserRouter>
         <NavBar/>
         <Routes>
-            <Route path="/" element={ useElement(<Home/>, <NotFound/>) } />
+            <Route path="/" element={ useElement(<Home/>, <Login/>) } />
+            <Route path="/:post" element={ useElement(<Post/>, <Login/>) } />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/perfil" element={useElement(<Perfil/>, <NotFound/>)} />
+            <Route path="/perfil" element={useElement(<Perfil/>, <Login/>)} />
             <Route path="*" element={<NotFound />} />
         </Routes>
     </BrowserRouter>
