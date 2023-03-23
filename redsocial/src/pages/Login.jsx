@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import useAxios from "../hooks/useAxios";
+import useAxiosUsers from "../hooks/useAxios";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { contexto } from "../App";
@@ -15,7 +15,7 @@ const Login = () => {
   const [data, setData] = useState();
 
   useEffect(() => {
-    useAxios
+    useAxiosUsers
       .get("usuario/lista")
       .then((response) => {
         setData(response.data);

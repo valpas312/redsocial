@@ -1,10 +1,81 @@
-import React from 'react'
-import { useQuery } from 'react-query'
+import { Alert, AlertIcon, Box, Link as ChakraLink, Spinner } from "@chakra-ui/react";
+import React from "react";
+import { useQuery } from "react-query";
+import { useAxiosPosts } from "../hooks/useAxios";
+import Comment from "../components/Comment";
+import { useParams } from "react-router-dom";
 
 const Posts = () => {
-  return <>
-    <h1>Posts</h1>
-  </>
-}
 
-export default Posts
+  const { post } = useParams();
+  
+  const { data, isLoading, isError } = useQuery("posts", () =>
+    useAxiosPosts.get("posts").then((res) => res.data)
+  );
+
+  const {
+    data: dataComments,
+    isLoading: isLoadingComments,
+    isError: isErrorComments,
+  } = useQuery("comments", () =>
+    useAxiosPosts.get("comments").then((res) => res.data)
+  );
+
+  return <>
+    <Box
+      w="100vw"
+      display="flex"
+      flexDirection="row"
+      justifyContent="center"
+      alignItems="center"
+      gap="2rem"
+      flexWrap="wrap"
+    >
+      {isLoading && <Spinner />}
+      {data
+        ? data.map((post) => (
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              gap="1rem"
+              w="30%"
+              h="30%"
+              p="1rem"
+              border="1px solid black"
+              borderRadius="5px"
+              key={post.id}
+            >
+              <ChakraLink
+                as={Link}
+              >{post.title}</ChakraLink>
+              <p>{post.body}</p>
+              {isLoadingComments && <Spinner />}
+              {dataComments
+                ? dataComments.map(({id, body}) => (
+                    <Comment
+                      key={id}
+                      id={id}
+                      body={body}
+                    />
+                  ))
+                : isErrorComments && (
+                    <Alert status="error">
+                      <AlertIcon />
+                      There was an error fetching the comments
+                    </Alert>
+                  )}
+            </Box>
+          ))
+        : isError && (
+            <Alert status="error">
+              <AlertIcon />
+              There was an error fetching the data
+            </Alert>
+          )}
+    </Box>
+  </>
+};
+
+export default Posts;

@@ -24,7 +24,7 @@ const NavBar = () => {
             : (
               <>
                 <Button colorScheme="teal" as={Link} to="/login">Login</Button>
-                <Button colorScheme="teal" as={Link} to="/registro">Registro</Button>
+                <Button colorScheme="teal" as={Link} to="/register">Register</Button>
               </>
             )
           }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useAxios from "../hooks/useAxios";
+import useAxiosUsers from "../hooks/useAxios";
 import { Button, Input, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +16,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    useAxios
+    useAxiosUsers
       .post("usuario/agregar", {
         name: name,
         password: password,

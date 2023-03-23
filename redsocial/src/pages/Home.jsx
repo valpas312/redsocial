@@ -4,7 +4,7 @@ import { BoxStyled } from '../components/StyledChakra'
 
 const Home = () => {
   return <BoxStyled>
-    <h1>Home</h1>
+    <h1>Welcome!</h1>
     <Posts/>
   </BoxStyled>
 }
