@@ -18,7 +18,7 @@ const Router = () => {
         <NavBar/>
         <Routes>
             <Route path="/" element={ useElement(<Home/>, <Login/>) } />
-            <Route path="/:post" element={ useElement(<Post/>, <Login/>) } />
+            <Route path="/posts/:post" element={ useElement(<Post/>, <Login/>) } />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/perfil" element={useElement(<Perfil/>, <Login/>)} />

@@ -3,11 +3,9 @@ import React from "react";
 import { useQuery } from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
 import Comment from "../components/Comment";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
-
-  const { post } = useParams();
   
   const { data, isLoading, isError } = useQuery("posts", () =>
     useAxiosPosts.get("posts").then((res) => res.data)
@@ -49,6 +47,7 @@ const Posts = () => {
             >
               <ChakraLink
                 as={Link}
+                to={`/posts/${post.id}`}
               >{post.title}</ChakraLink>
               <p>{post.body}</p>
               {isLoadingComments && <Spinner />}
