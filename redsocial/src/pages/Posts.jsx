@@ -6,18 +6,19 @@ import Comment from "../components/Comment";
 import { Link } from "react-router-dom";
 
 const Posts = () => {
+
   
   const { data, isLoading, isError } = useQuery("posts", () =>
     useAxiosPosts.get("posts").then((res) => res.data)
   );
 
-  const {
-    data: dataComments,
-    isLoading: isLoadingComments,
-    isError: isErrorComments,
-  } = useQuery("comments", () =>
-    useAxiosPosts.get("comments").then((res) => res.data)
-  );
+  // const {
+  //   data: dataComments,
+  //   isLoading: isLoadingComments,
+  //   isError: isErrorComments,
+  // } = useQuery("comments", () =>
+  // useAxiosPosts.get("comments").then((res) => res.data)
+  // );
 
   return <>
     <Box
@@ -49,22 +50,7 @@ const Posts = () => {
                 as={Link}
                 to={`/posts/${post.id}`}
               >{post.title}</ChakraLink>
-              <p>{post.body}</p>
-              {isLoadingComments && <Spinner />}
-              {dataComments
-                ? dataComments.map(({id, body}) => (
-                    <Comment
-                      key={id}
-                      id={id}
-                      body={body}
-                    />
-                  ))
-                : isErrorComments && (
-                    <Alert status="error">
-                      <AlertIcon />
-                      There was an error fetching the comments
-                    </Alert>
-                  )}
+              <p>{post.description}</p>
             </Box>
           ))
         : isError && (

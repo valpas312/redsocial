@@ -1,12 +1,54 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" },
-      { "id": 2, "title": "json-server", "author": "typicode" },
-      { "id": 3, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 },
-      { "id": 2, "body": "some comment", "postId": 1 },
-      { "id": 3, "body": "some comment", "postId": 2 }
-    ]
-  }
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode",
+      "description": "json-server is a full fake REST API with zero coding in less than 30 seconds (seriously)"
+    },
+    {
+      "id": 2,
+      "title": "json-server",
+      "author": "typicode",
+      "description": "json-server is a full fake REST API with zero coding in less than 30 seconds (seriously)"
+    },
+    {
+      "id": 3,
+      "title": "json-server",
+      "author": "typicode",
+      "description": "json-server is a full fake REST API with zero coding in less than 30 seconds (seriously)"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1,
+      "user": "typicode"
+    },
+    {
+      "id": 2,
+      "body": "some comment",
+      "postId": 1,
+      "user": "typicode"
+    },
+    {
+      "id": 3,
+      "body": "some comment",
+      "postId": 2,
+      "user": "typicode"
+    },
+    {
+      "postId": 1,
+      "user": "asd",
+      "body": "Carajo mierda",
+      "id": 4
+    },
+    {
+      "postId": 1,
+      "user": "asd",
+      "body": "Holaaa forrooooo",
+      "id": 5
+    }
+  ]
+}
