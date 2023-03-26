@@ -45,7 +45,7 @@ const Posts = () => {
                 <ChakraLink as={Link} to={`/posts/${post.id}`}>
                   {post.title}
                 </ChakraLink>
-                <p>{post.description}</p>
+                <p>{ post.description.slice(0, 100)+'...' }</p>
               </Box>
             ))
           : isError && (

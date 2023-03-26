@@ -1,7 +1,13 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import React from "react";
+import { useAxiosPosts } from "../hooks/useAxios";
+import { useMutation } from "react-query";
 
-const Comment = ({ body, user }) => {
+const Comment = ({ body, user, id }) => {
+  const { mutate, isLoading, isSuccess } = useMutation(() =>
+    useAxiosPosts.delete(`comments/${id}`)
+  );
+
   return (
     <>
       {
@@ -17,6 +23,14 @@ const Comment = ({ body, user }) => {
         >
           <h3>{user}</h3>
           <p>{body}</p>
+          <Button
+            colorScheme="red"
+            onClick={() => {
+              mutate();
+            }}
+          >
+            {isLoading ? "Deleting..." : isSuccess ? "Deleted" : "Delete"}
+          </Button>
         </Box>
       }
     </>

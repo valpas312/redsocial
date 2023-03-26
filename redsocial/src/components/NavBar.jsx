@@ -22,6 +22,9 @@ const NavBar = () => {
               <Button colorScheme="teal" as={Link} to="/">
                 Home
               </Button>
+              <Button colorScheme="teal" as={Link} to="/chats">
+                Chats
+              </Button>
               <Button colorScheme="teal" as={Link} to="/perfil">
                 Perfil
               </Button>

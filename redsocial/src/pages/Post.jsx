@@ -14,15 +14,22 @@ const Post = () => {
   const { data, isLoading, isError, isRefetching } = useQuery(
     "post",
     () => useAxiosPosts.get(`posts/${post}`).then((res) => res.data),
-    { refetchOnMount: true }
+    {
+      refetchOnMount: true,
+    }
   );
 
   const {
     data: dataComments,
     isLoading: isLoadingComments,
     isError: isErrorComments,
-  } = useQuery("comments", () =>
-    useAxiosPosts.get("comments").then((res) => res.data)
+  } = useQuery(
+    "comments",
+    () => useAxiosPosts.get("comments").then((res) => res.data),
+    {
+      refetchOnMount: true,
+      refetchInterval: 1000,
+    }
   );
 
   const comments = dataComments?.filter(
@@ -63,7 +70,7 @@ const Post = () => {
             {isLoadingComments && <Spinner />}
             {comments
               ? comments.map(({ id, body, user }) => (
-                  <Comment key={id + body} body={body} user={user} />
+                  <Comment key={id + body} body={body} user={user} id={id} />
                 ))
               : isErrorComments && (
                   <AlertMsg status="error" msg="Comments not founded" />

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL_USERS = "https://users-app-two.vercel.app/api/"
-const URL_POSTS = "http://localhost:3000/"
+const URL_APP = "http://localhost:3000/"
 
 const useAxiosUsers = axios.create({
   baseURL: URL_USERS,
@@ -11,10 +11,17 @@ const useAxiosUsers = axios.create({
 });
 
 export const useAxiosPosts = axios.create({
-  baseURL: URL_POSTS,
+  baseURL: URL_APP,
   headers: {
     "Content-Type": "application/json",
   },
+});
+
+export const useAxiosChats = axios.create({
+  baseURL: URL_APP,
+  headers: {
+    "Content-Type": "application/json",
+  }
 });
 
 export default useAxiosUsers;

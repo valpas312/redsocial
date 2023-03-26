@@ -23,21 +23,15 @@
       "author": "asd",
       "description": "Hola este es mi primer post desde la ruta /posts/add, saludos",
       "id": 4
+    },
+    {
+      "title": "Mi novia",
+      "author": "asd",
+      "description": "Mi novia es re tonta no se porque y encima tiene alto olor a caca o sea, no entiendo porque no se baña aunque sea un poco nada mas se lo pido por favor",
+      "id": 5
     }
   ],
   "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1,
-      "user": "typicode"
-    },
-    {
-      "id": 2,
-      "body": "some comment",
-      "postId": 1,
-      "user": "typicode"
-    },
     {
       "id": 3,
       "body": "some comment",
@@ -79,6 +73,30 @@
       "user": "asd",
       "body": "Holi",
       "id": 9
+    },
+    {
+      "postId": 3,
+      "user": "asd",
+      "body": "Hola po wn",
+      "id": 10
+    }
+  ],
+  "chats": [
+    {
+      "id": 1,
+      "name": "Chat 1",
+      "messages": [
+        {
+          "id": 1,
+          "body": "Hola",
+          "user": "asd"
+        },
+        {
+          "id": 2,
+          "body": "Hola",
+          "user": "valpa"
+        }
+      ]
     }
   ]
 }
