@@ -63,14 +63,14 @@ const Login = () => {
       >
         Login
       </Text>
-      <Box 
-      as="form" 
-      onSubmit={handleSubmit}
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      gap="2rem"
+      <Box
+        as="form"
+        onSubmit={handleSubmit}
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        gap="2rem"
       >
         <div>
           <label htmlFor="name">Name:</label>

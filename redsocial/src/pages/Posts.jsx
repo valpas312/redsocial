@@ -2,7 +2,6 @@ import { Alert, AlertIcon, Box, Link as ChakraLink, Spinner } from "@chakra-ui/r
 import React from "react";
 import { useQuery } from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
-import Comment from "../components/Comment";
 import { Link } from "react-router-dom";
 
 const Posts = () => {
@@ -11,14 +10,6 @@ const Posts = () => {
   const { data, isLoading, isError } = useQuery("posts", () =>
     useAxiosPosts.get("posts").then((res) => res.data)
   );
-
-  // const {
-  //   data: dataComments,
-  //   isLoading: isLoadingComments,
-  //   isError: isErrorComments,
-  // } = useQuery("comments", () =>
-  // useAxiosPosts.get("comments").then((res) => res.data)
-  // );
 
   return <>
     <Box

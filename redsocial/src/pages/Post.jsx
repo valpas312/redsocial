@@ -2,14 +2,16 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
-import { Box, Spinner, Alert, AlertIcon } from "@chakra-ui/react";
+import { Box, Spinner, Divider, Stack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import AddComment from "../components/AddComment";
+import Comment from "../components/Comment";
+import AlertMsg from "../components/AlertMsg";
 
 const Post = () => {
   const { post } = useParams();
 
-  const { data, isLoading, isError} = useQuery("post", () =>
+  const { data, isLoading, isError } = useQuery("post", () =>
     useAxiosPosts.get(`posts/${post}`).then((res) => res.data)
   );
 
@@ -17,9 +19,10 @@ const Post = () => {
     data: dataComments,
     isLoading: isLoadingComments,
     isError: isErrorComments,
-  } = useQuery("comments", () =>
-    useAxiosPosts.get("comments").then((res) => res.data),
-    // {refetchInterval: 1000}
+  } = useQuery(
+    "comments",
+    () => useAxiosPosts.get("comments").then((res) => res.data),
+    { refetchInterval: 1000 }
   );
 
   const comments = dataComments?.filter(
@@ -27,40 +30,43 @@ const Post = () => {
   );
 
   return (
-    <Box>
-      <Link to="/">Volver</Link>
-      <h1>Post {post ? post : "not founded"}</h1>
+    <Box
+      p="1rem"
+      w="100%"
+      h="100%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap="1rem"
+      textAlign="center"
+    >
+      <Stack direction="row" h="50px" spacing={4} align="center">
+        <Link to="/">Back</Link>
+        <Divider orientation="vertical" />
+        <h1>Post {post ? post : "not founded"}</h1>
+      </Stack>
       {isLoading && <Spinner />}
       {data ? (
         <Box>
           <h1>{data.title}</h1>
-          <p>{data.body}</p>
-          <Box>
+          <p>{data.description}</p>
+          <Divider />
+          <Box display="flex" flexDirection="column" gap="1rem">
             <h2>Comments</h2>
             {isLoadingComments && <Spinner />}
             {comments
               ? comments.map(({ id, body, user }) => (
-                    <Box key={id+body}>
-                      <h3>{user}</h3>
-                      <p>{body}</p>
-                    </Box>
+                  <Comment key={id + body} body={body} user={user} />
                 ))
               : isErrorComments && (
-                  <Alert status="error">
-                    <AlertIcon />
-                    There are no comments for this post
-                  </Alert>
+                  <AlertMsg status="error" msg="Comments not founded" />
                 )}
             <AddComment />
           </Box>
         </Box>
       ) : (
-        isError && (
-          <Alert status="error">
-            <AlertIcon />
-            There was an error fetching the comments
-          </Alert>
-        )
+        isError && <AlertMsg status="error" msg="Post not founded" />
       )}
     </Box>
   );

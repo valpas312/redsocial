@@ -3,8 +3,6 @@ import { contexto } from "../App";
 import { useMutation } from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
 import {
-  Alert,
-  AlertIcon,
   Box,
   Button,
   FormControl,
@@ -13,6 +11,7 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import AlertMsg from "./AlertMsg";
 
 const AddComment = () => {
   const { post } = useParams();
@@ -46,19 +45,11 @@ const AddComment = () => {
       </Box>
 
       {isSuccess && (
-        <Alert status="success">
-          <AlertIcon />
-          The comment was added successfully
-        </Alert>
+        <AlertMsg status="success" msg="Comment added successfully" />
       )}
 
       {isLoading && <Spinner />}
-      {isError && (
-        <Alert status="error">
-          <AlertIcon />
-          There was an error adding the comment
-        </Alert>
-      )}
+      {isError && <AlertMsg status="error" msg="Error adding comment" />}
     </>
   );
 };

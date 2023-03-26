@@ -49,6 +49,24 @@
       "user": "asd",
       "body": "Holaaa forrooooo",
       "id": 5
+    },
+    {
+      "postId": 1,
+      "user": "asd",
+      "body": "Holi ",
+      "id": 6
+    },
+    {
+      "postId": 1,
+      "user": "asd",
+      "body": "Holi",
+      "id": 7
+    },
+    {
+      "postId": 1,
+      "user": "asd",
+      "body": "puto",
+      "id": 8
     }
   ]
 }
