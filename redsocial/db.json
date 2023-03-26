@@ -17,6 +17,12 @@
       "title": "json-server",
       "author": "typicode",
       "description": "json-server is a full fake REST API with zero coding in less than 30 seconds (seriously)"
+    },
+    {
+      "title": "Prueba Post ",
+      "author": "asd",
+      "description": "Hola este es mi primer post desde la ruta /posts/add, saludos",
+      "id": 4
     }
   ],
   "comments": [
@@ -67,6 +73,12 @@
       "user": "asd",
       "body": "puto",
       "id": 8
+    },
+    {
+      "postId": 4,
+      "user": "asd",
+      "body": "Holi",
+      "id": 9
     }
   ]
 }

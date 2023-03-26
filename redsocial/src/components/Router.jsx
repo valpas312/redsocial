@@ -11,6 +11,7 @@ import Post from "../pages/Post";
 import NavBar from "./NavBar";
 
 import useElement from "../hooks/useElement";
+import AddPost from "../pages/AddPosts";
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
         <NavBar />
         <Routes>
           <Route path="/" element={useElement(<Home />, <Login />)} />
+          <Route path="/posts/add" element={useElement(<AddPost />, <Login />)} />
           <Route
             path="/posts/:post"
             element={useElement(<Post />, <Login />)}

@@ -11,18 +11,18 @@ import AlertMsg from "../components/AlertMsg";
 const Post = () => {
   const { post } = useParams();
 
-  const { data, isLoading, isError } = useQuery("post", () =>
-    useAxiosPosts.get(`posts/${post}`).then((res) => res.data)
+  const { data, isLoading, isError, isRefetching } = useQuery(
+    "post",
+    () => useAxiosPosts.get(`posts/${post}`).then((res) => res.data),
+    { refetchOnMount: true }
   );
 
   const {
     data: dataComments,
     isLoading: isLoadingComments,
     isError: isErrorComments,
-  } = useQuery(
-    "comments",
-    () => useAxiosPosts.get("comments").then((res) => res.data),
-    { refetchInterval: 1000 }
+  } = useQuery("comments", () =>
+    useAxiosPosts.get("comments").then((res) => res.data)
   );
 
   const comments = dataComments?.filter(
@@ -42,15 +42,21 @@ const Post = () => {
       textAlign="center"
     >
       <Stack direction="row" h="50px" spacing={4} align="center">
-        <Link to="/">Back</Link>
+        {isRefetching ? <Spinner /> : <Link to="/">Back</Link>}
         <Divider orientation="vertical" />
         <h1>Post {post ? post : "not founded"}</h1>
       </Stack>
       {isLoading && <Spinner />}
       {data ? (
         <Box>
-          <h1>{data.title}</h1>
-          <p>{data.description}</p>
+          {isRefetching ? (
+            <Spinner />
+          ) : (
+            <>
+              <h1>{data.title}</h1>
+              <p>{data.description}</p>
+            </>
+          )}
           <Divider />
           <Box display="flex" flexDirection="column" gap="1rem">
             <h2>Comments</h2>
