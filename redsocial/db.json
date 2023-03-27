@@ -29,6 +29,12 @@
       "author": "asd",
       "description": "Mi novia es re tonta no se porque y encima tiene alto olor a caca o sea, no entiendo porque no se baña aunque sea un poco nada mas se lo pido por favor",
       "id": 5
+    },
+    {
+      "title": "Probando alert",
+      "author": "asd",
+      "description": "Hola soy valpa y en este post se va a probar la funcion setTimeOut para hacer desaparecer el alert despues de tres segundos de mostrado con useState, fin",
+      "id": 6
     }
   ],
   "comments": [
@@ -63,12 +69,6 @@
       "id": 7
     },
     {
-      "postId": 1,
-      "user": "asd",
-      "body": "puto",
-      "id": 8
-    },
-    {
       "postId": 4,
       "user": "asd",
       "body": "Holi",
@@ -79,6 +79,36 @@
       "user": "asd",
       "body": "Hola po wn",
       "id": 10
+    },
+    {
+      "postId": 5,
+      "user": "asd",
+      "body": "Hola soy valen y estoy de acuerdo jsjsj",
+      "id": 11
+    },
+    {
+      "postId": 5,
+      "user": "asd",
+      "body": "holi",
+      "id": 12
+    },
+    {
+      "postId": 5,
+      "user": "asd",
+      "body": "holi devuelta",
+      "id": 13
+    },
+    {
+      "postId": 5,
+      "user": "asd",
+      "body": "holi devuelta 2",
+      "id": 14
+    },
+    {
+      "postId": 5,
+      "user": "asd",
+      "body": "holi devuelta 3",
+      "id": 15
     }
   ],
   "chats": [

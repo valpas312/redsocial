@@ -1,12 +1,12 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { useAxiosPosts } from '../hooks/useAxios'
+import { useAxiosChats } from '../hooks/useAxios'
 import { Link } from 'react-router-dom'
 import { Box, Spinner, Alert, AlertIcon, Link as ChakraLink } from '@chakra-ui/react'
 
 const Chats = () => {
 
-    const { data, isLoading, isError } = useQuery('chats', () => useAxiosPosts
+    const { data, isLoading, isError } = useQuery('chats', () => useAxiosChats
     .get('chats')
     .then(res => res.data))
 
