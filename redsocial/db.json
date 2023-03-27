@@ -114,19 +114,101 @@
   "chats": [
     {
       "id": 1,
-      "name": "Chat 1",
-      "messages": [
-        {
-          "id": 1,
-          "body": "Hola",
-          "user": "asd"
-        },
-        {
-          "id": 2,
-          "body": "Hola",
-          "user": "valpa"
-        }
-      ]
+      "name": "Chat 1"
+    },
+    {
+      "name": "mi chat favorito carajo",
+      "id": 2
+    },
+    {
+      "name": "cojon",
+      "id": 3
+    }
+  ],
+  "messages": [
+    {
+      "chatId": 1,
+      "id": 1,
+      "body": "Hola",
+      "user": "asd"
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "holamanola",
+      "id": 2
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "holaaaaa",
+      "id": 3
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "que onda",
+      "id": 4
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "asdasd asdasdfasdfg",
+      "id": 5
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "jodete",
+      "id": 6
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "a",
+      "id": 7
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "asdasdaaaaa",
+      "id": 8
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "aw",
+      "id": 9
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "a",
+      "id": 10
+    },
+    {
+      "chatId": 1,
+      "user": "asd",
+      "body": "a",
+      "id": 11
+    },
+    {
+      "chatId": 3,
+      "user": "asd",
+      "body": "hola soy cojon",
+      "id": 12
+    },
+    {
+      "chatId": 2,
+      "user": "asd",
+      "body": "Pingaaa",
+      "id": 13
+    },
+    {
+      "chatId": 2,
+      "user": "valpa",
+      "body": "Pong",
+      "id": 14
     }
   ]
 }

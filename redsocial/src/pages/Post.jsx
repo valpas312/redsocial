@@ -13,7 +13,9 @@ const Post = () => {
 
   const { data, isLoading, isError, isRefetching } = useQuery(
     "post",
-    () => useAxiosPosts.get(`posts/${post}`).then((res) => res.data),
+    () => useAxiosPosts
+    .get(`posts/${post}`)
+    .then((res) => res.data),
     {
       refetchOnMount: true,
     }
