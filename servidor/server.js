@@ -1,6 +1,8 @@
-const Express = require("express");
+import Express from "express";
+import {connect} from "./db.js";
 
 const app = Express();
+connect();
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
