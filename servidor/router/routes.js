@@ -48,7 +48,7 @@ router.get("/chats/:id", async (req, res) => {
 });
 
 //Post Petitions
-router.post("/posts/add", async(req, res) => {
+router.post("/posts", async(req, res) => {
     const postsCollection = client.db("redsocial").collection("posts");
     const result = await postsCollection.insertOne(req.body);
     res.json(result);

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL_USERS = "https://users-app-two.vercel.app/api/"
-const URL_APP = "http://localhost:3000/"
+const URL_APP = "http://localhost:3000/api"
 
 const useAxiosUsers = axios.create({
   baseURL: URL_USERS,

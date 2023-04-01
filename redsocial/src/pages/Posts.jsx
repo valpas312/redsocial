@@ -40,9 +40,9 @@ const Posts = () => {
                 p="1rem"
                 border="1px solid black"
                 borderRadius="5px"
-                key={post.id}
+                key={post._id}
               >
-                <ChakraLink as={Link} to={`/posts/${post.id}`}>
+                <ChakraLink as={Link} to={`/posts/${post._id}`}>
                   {post.title}
                 </ChakraLink>
                 <p>{ post.description.slice(0, 100)+'...' }</p>
