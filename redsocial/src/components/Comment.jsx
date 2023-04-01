@@ -3,9 +3,9 @@ import React from "react";
 import { useAxiosPosts } from "../hooks/useAxios";
 import { useMutation } from "react-query";
 
-const Comment = ({ body, user, id }) => {
+const Comment = ({ body, user, _id }) => {
   const { mutate, isLoading, isSuccess } = useMutation(() =>
-    useAxiosPosts.delete(`comments/${id}`)
+    useAxiosPosts.delete(`comments/${_id}`)
   );
 
   return (

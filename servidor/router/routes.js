@@ -1,6 +1,6 @@
 import express from "express";
 import { client } from "../db.js";
-
+import { ObjectId } from "mongodb";
 
 const router = express.Router();
 //Get Petitions
@@ -29,21 +29,21 @@ router.get("/chats", async (req, res) => {
 });
 
 //Get Petitions by ID
-router.get("/posts/:id", async (req, res) => {
+router.get("/posts/:_id", async (req, res) => {
     const postsCollection = client.db("redsocial").collection("posts");
-    const post = await postsCollection.findOne({ _id: req.params.id });
+    const post = await postsCollection.findOne({ _id: new ObjectId(req.params._id) });
     res.json(post);
 });
 
-router.get("/comments/:id", async (req, res) => {
+router.get("/comments/:_id", async (req, res) => {
     const commentsCollection = client.db("redsocial").collection("comments");
-    const comment = await commentsCollection.findOne({ _id: req.params.id });
+    const comment = await commentsCollection.findOne({ _id: new ObjectId(req.params._id) });
     res.json(comment);
 });
 
 router.get("/chats/:id", async (req, res) => {
     const chatsCollection = client.db("redsocial").collection("chats");
-    const chat = await chatsCollection.findOne({ _id: req.params.id });
+    const chat = await chatsCollection.findOne({ _id: new ObjectId(req.params._id) });
     res.json(chat);
 });
 
@@ -54,13 +54,13 @@ router.post("/posts", async(req, res) => {
     res.json(result);
 });
 
-router.post("/comments/add", async (req, res) => {
+router.post("/comments", async (req, res) => {
     const commentsCollection = client.db("redsocial").collection("comments");
     const result = await commentsCollection.insertOne(req.body);
     res.json(result);
 });
 
-router.post("/messages/add", async (req, res) => {
+router.post("/messages", async (req, res) => {
     const messagesCollection = client.db("redsocial").collection("messages");
     const result = await messagesCollection.insertOne(req.body);
     res.json(result);
@@ -69,6 +69,25 @@ router.post("/messages/add", async (req, res) => {
 router.post("/chats", async (req, res) => {
     const chatsCollection = client.db("redsocial").collection("chats");
     const result = await chatsCollection.insertOne(req.body);
+    res.json(result);
+});
+
+//Delete Petitions
+router.delete("/posts/:_id", async (req, res) => {
+    const postsCollection = client.db("redsocial").collection("posts");
+    const result = await postsCollection.deleteOne({ _id: new ObjectId(req.params._id) });
+    res.json(result);
+});
+
+router.delete("/comments/:_id", async (req, res) => {
+    const commentsCollection = client.db("redsocial").collection("comments");
+    const result = await commentsCollection.deleteOne({ _id: new ObjectId(req.params._id) });
+    res.json(result);
+});
+
+router.delete("/messages/:_id", async (req, res) => {
+    const messagesCollection = client.db("redsocial").collection("messages");
+    const result = await messagesCollection.deleteOne({ _id: new ObjectId(req.params._id) });
     res.json(result);
 });
 

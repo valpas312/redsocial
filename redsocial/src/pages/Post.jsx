@@ -35,7 +35,7 @@ const Post = () => {
   );
 
   const comments = dataComments?.filter(
-    (comment) => comment.postId === Number(post)
+    (comment) => comment.postId === post
   );
 
   return (
@@ -53,7 +53,7 @@ const Post = () => {
       <Stack direction="row" h="50px" spacing={4} align="center">
         {isRefetching ? <Spinner /> : <Link to="/">Back</Link>}
         <Divider orientation="vertical" />
-        <h1>Post {post ? post : "not founded"}</h1>
+        <h1>{data ? data.title : "not founded"}</h1>
       </Stack>
       {isLoading && <Spinner />}
       {data ? (
@@ -71,8 +71,8 @@ const Post = () => {
             <h2>Comments</h2>
             {isLoadingComments && <Spinner />}
             {comments
-              ? comments.map(({ id, body, user }) => (
-                  <Comment key={id + body} body={body} user={user} id={id} />
+              ? comments.map(({ _id, body, user }) => (
+                  <Comment key={_id + body} body={body} user={user} _id={_id} />
                 ))
               : isErrorComments && (
                   <AlertMsg status="error" msg="Comments not founded" />

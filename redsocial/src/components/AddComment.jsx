@@ -26,7 +26,7 @@ const AddComment = () => {
     e.preventDefault();
     const { body } = e.target.elements;
     mutate({
-      postId: Number(post),
+      postId: post,
       user: user.name,
       body: body.value,
     });
