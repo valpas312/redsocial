@@ -8,7 +8,10 @@ const Chats = () => {
 
     const { data, isLoading, isError } = useQuery('chats', () => useAxiosChats
     .get('chats')
-    .then(res => res.data))
+    .then(res => res.data)
+    )
+
+    console.log(data)
 
   return <>
     <Box
@@ -34,9 +37,9 @@ const Chats = () => {
             p="1rem"
             border="1px solid black"
             borderRadius="5px"
-            key={chat.id}
+            key={chat._id}
             >
-            <ChakraLink as={Link} to={`/chats/${chat.id}`}>
+            <ChakraLink as={Link} to={`/chats/${chat._id}`}>
                 {chat.name}
             </ChakraLink>
             </Box>

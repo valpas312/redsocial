@@ -19,7 +19,7 @@ const AddMessage = () => {
     const { body } = e.target.elements;
 
     mutate({
-      chatId: Number(chat),
+      chatId: chat,
       user: user.name,
       body: body.value,
     });

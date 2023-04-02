@@ -41,7 +41,7 @@ router.get("/comments/:_id", async (req, res) => {
     res.json(comment);
 });
 
-router.get("/chats/:id", async (req, res) => {
+router.get("/chats/:_id", async (req, res) => {
     const chatsCollection = client.db("redsocial").collection("chats");
     const chat = await chatsCollection.findOne({ _id: new ObjectId(req.params._id) });
     res.json(chat);

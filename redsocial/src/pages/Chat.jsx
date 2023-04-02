@@ -12,6 +12,17 @@ const Chat = () => {
 
   const { chat } = useParams();
 
+  const {
+    data: dataChat,
+    isError: isErrorChat,
+  } = useQuery(
+    "chat",
+    () => useAxiosChats.get(`chats/${chat}`).then((res) => res.data),
+    {
+      refetchOnMount: true,
+    }
+  );
+
   const { data, isLoading, isError } = useQuery(
     "messages",
     () => useAxiosChats.get("messages").then((res) => res.data),
@@ -23,11 +34,18 @@ const Chat = () => {
 
   return (
     <>
-      <h1>Chat {chat}</h1>
+      <h1>
+        Chat{" "}
+        {dataChat
+          ? dataChat.name
+          : isErrorChat && (
+              <AlertMsg status="error" msg="Error fetching the messages" />
+            )}
+      </h1>
       {isLoading && <Spinner />}
       {data
         ? data
-            .filter((message) => message.chatId === Number(chat))
+            .filter((message) => message.chatId === chat)
             .map((message) => (
               <Box key={message.id} p={4} shadow="md" borderWidth="1px">
                 <Text
