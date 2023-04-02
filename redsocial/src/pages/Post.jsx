@@ -53,7 +53,15 @@ const Post = () => {
       <Stack direction="row" h="50px" spacing={4} align="center">
         {isRefetching ? <Spinner /> : <Link to="/">Back</Link>}
         <Divider orientation="vertical" />
-        <h1>{data ? data.title : "not founded"}</h1>
+        <h1>{
+          isRefetching
+            ? <Spinner />
+            : data
+            ? data.title
+            : isError
+            ? "Post not founded"
+            : "Post not founded"
+        }</h1>
       </Stack>
       {isLoading && <Spinner />}
       {data ? (

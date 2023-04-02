@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { useAxiosChats } from '../hooks/useAxios'
 import { Link } from 'react-router-dom'
-import { Box, Spinner, Alert, AlertIcon, Link as ChakraLink } from '@chakra-ui/react'
+import { Box, Spinner, Alert, AlertIcon, Link as ChakraLink, Text } from '@chakra-ui/react'
 
 const Chats = () => {
 
@@ -14,10 +14,17 @@ const Chats = () => {
     console.log(data)
 
   return <>
+    <Text
+        fontSize="3xl"
+        fontWeight="bold"
+        textAlign="center"
+        mt="2rem"
+        mb="2rem"
+    >Chats</Text>
     <Box
         w="100vw"
         display="flex"
-        flexDirection="row"
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         gap="2rem"
@@ -32,7 +39,7 @@ const Chats = () => {
             justifyContent="center"
             alignItems="center"
             gap="1rem"
-            w="30%"
+            w="60%"
             h="30%"
             p="1rem"
             border="1px solid black"

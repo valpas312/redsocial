@@ -3,7 +3,7 @@ import {
   AlertIcon,
   Box,
   Link as ChakraLink,
-  Spinner,
+  Spinner
 } from "@chakra-ui/react";
 import React from "react";
 import { useQuery } from "react-query";
@@ -20,7 +20,7 @@ const Posts = () => {
       <Box
         w="100vw"
         display="flex"
-        flexDirection="row"
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         gap="2rem"
@@ -35,7 +35,7 @@ const Posts = () => {
                 justifyContent="center"
                 alignItems="center"
                 gap="1rem"
-                w="30%"
+                w="60%"
                 h="30%"
                 p="1rem"
                 border="1px solid black"

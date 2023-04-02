@@ -34,14 +34,19 @@ const Chat = () => {
 
   return (
     <>
-      <h1>
-        Chat{" "}
-        {dataChat
+      <Text
+        fontSize="3xl"
+        fontWeight="bold"
+        textAlign="center"
+        mt="2rem"
+        mb="2rem"
+      >
+        Chat {dataChat
           ? dataChat.name
           : isErrorChat && (
               <AlertMsg status="error" msg="Error fetching the messages" />
             )}
-      </h1>
+      </Text>
       {isLoading && <Spinner />}
       {data
         ? data
