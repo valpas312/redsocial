@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const URL_USERS = "https://users-app-two.vercel.app/api/"
-const URL_APP = "https://redsocial-6c21.vercel.app/api"
+const URL_APP = 'https://redsocial-6c21.vercel.app/api'
 
 const useAxiosUsers = axios.create({
   baseURL: URL_USERS,
