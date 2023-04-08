@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import useAxiosUsers from "../hooks/useAxios";
-import { Button, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Input, Text, useMediaQuery, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+  const toast = useToast();
+
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -26,12 +31,24 @@ const Register = () => {
       .then((response) => {
         console.log(response.data);
         setUser(response.data);
-        alert("Register successful");
+        toast({
+          title: "Register successful",
+          description: "Login to continue",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
         navigate("/login");
       })
       .catch((error) => {
         console.log(error);
-        alert("Register failed");
+        toast({
+          title: "Register failed",
+          description: "Please try again",
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
       });
 
     setName("");
@@ -40,7 +57,15 @@ const Register = () => {
   };
 
   return (
-    <>
+    <Box
+      w="100%"
+      h="100%"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      gap="2rem"
+    >
       <Text
         fontSize="4xl"
         fontWeight="bold"
@@ -50,8 +75,24 @@ const Register = () => {
       >
         Register
       </Text>
-      <form onSubmit={handleSubmit}>
-        <div>
+      <Box
+        as="form"
+        onSubmit={handleSubmit}
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        gap="2rem"
+        textAlign="center"
+        >
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="1rem"
+          w={isLargerThan768 ? "100%" : "80%"}
+        >
           <label htmlFor="name">Name:</label>
           <Input
             variant="filled"
@@ -59,9 +100,17 @@ const Register = () => {
             id="name"
             value={name}
             onChange={(event) => setName(event.target.value)}
+            required
           />
-        </div>
-        <div>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="1rem"
+          w={isLargerThan768 ? "100%" : "80%"}
+        >
           <label htmlFor="email">Email:</label>
           <Input
             variant="filled"
@@ -69,9 +118,17 @@ const Register = () => {
             id="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
+            required
           />
-        </div>
-        <div>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="1rem"
+          w={isLargerThan768 ? "100%" : "80%"}
+        >
           <label htmlFor="password">Password:</label>
           <Input
             variant="filled"
@@ -79,13 +136,14 @@ const Register = () => {
             id="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            required
           />
-        </div>
+        </Box>
         <Button colorScheme="teal" variant="outline" type="submit">
           Register
         </Button>
-      </form>
-    </>
+      </Box>
+    </Box>
   );
 };
 

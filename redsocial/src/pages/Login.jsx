@@ -1,10 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
 import useAxiosUsers from "../hooks/useAxios";
-import { Box, Button, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Input, Text, useMediaQuery, useToast } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { contexto } from "../App";
 
 const Login = () => {
+
+  const toast = useToast();
+
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
+
   const [user, setUser] = useContext(contexto);
 
   const navigate = useNavigate();
@@ -37,7 +42,13 @@ const Login = () => {
     const user = isEqual(name, password);
 
     user
-      ? (alert("Login successful"), navigate("/"), setUser(user))
+      ? (toast({
+          title: "Login successful",
+          description: "Welcome to the social network",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+      }), navigate("/"), setUser(user))
       : alert("Login failed");
 
     setName("");
@@ -71,8 +82,15 @@ const Login = () => {
         justifyContent="center"
         alignItems="center"
         gap="2rem"
+        textAlign="center"
       >
-        <div>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="1rem"
+        >
           <label htmlFor="name">Name:</label>
           <Input
             variant="filled"
@@ -80,9 +98,17 @@ const Login = () => {
             id="name"
             value={name}
             onChange={(event) => setName(event.target.value)}
+            w={isLargerThan768 ? "100%" : "80%"}
+            required
           />
-        </div>
-        <div>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="1rem"
+        >
           <label htmlFor="password">Password:</label>
           <Input
             variant="filled"
@@ -90,8 +116,10 @@ const Login = () => {
             id="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            w={isLargerThan768 ? "100%" : "80%"}
+            required
           />
-        </div>
+        </Box>
         <Button colorScheme="teal" variant="outline" type="submit">
           Login
         </Button>
