@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
-import { Flex, Heading, ButtonGroup, Button } from "@chakra-ui/react";
+import { Flex, Heading, ButtonGroup, Button, useMediaQuery} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { contexto } from "../App";
+import HamburgerNav from "./HamburgerNav";
 
 const NavBar = () => {
   const [user, setUser] = useContext(contexto);
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
 
   return (
     <>
+
       <Flex
         alignItems="center"
         gap="2"
@@ -15,6 +18,8 @@ const NavBar = () => {
         p="1.2rem"
         bg="whatsapp.200"
       >
+      {isLargerThan768 ? (
+        <>
         <Heading size="md">Red Social</Heading>
         <ButtonGroup gap="2">
           {Object.keys(user).length !== 0 ? (
@@ -48,6 +53,10 @@ const NavBar = () => {
             </>
           )}
         </ButtonGroup>
+        </>
+      ) : (
+        <HamburgerNav/>
+      )}
       </Flex>
     </>
   );

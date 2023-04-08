@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import useAxiosUsers from "../hooks/useAxios";
 import { Box, Button, Input, Text } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { contexto } from "../App";
 
 const Login = () => {
@@ -94,6 +94,12 @@ const Login = () => {
         </div>
         <Button colorScheme="teal" variant="outline" type="submit">
           Login
+        </Button>
+        <Text fontSize="xl" fontWeight="bold" textAlign="center">
+          or
+        </Text>
+        <Button colorScheme="teal" as={Link} to="/register" >
+          Register
         </Button>
       </Box>
     </Box>
