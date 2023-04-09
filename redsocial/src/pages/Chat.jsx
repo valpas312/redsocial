@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
 import { contexto } from "../App";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "react-query";
 import { useAxiosChats } from "../hooks/useAxios";
-import { Box, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, Spinner, Text, useToast } from "@chakra-ui/react";
 import AlertMsg from "../components/AlertMsg";
 import AddMessage from "../components/AddMessage";
 
 const Chat = () => {
+
+  const Toast = useToast();
+
+  const navigate = useNavigate();
+
   const [user, setUser] = useContext(contexto);
 
   const { chat } = useParams();
@@ -16,8 +21,6 @@ const Chat = () => {
     data: dataChat,
     isError: isErrorChat,
     isLoading: isLoadingChat,
-    isFetching: isFetchingChat,
-    isRefetching: isRefetchingChat,
   } = useQuery(
     "chat",
     () => useAxiosChats.get(`chats/${chat}`).then((res) => res.data),
@@ -36,6 +39,25 @@ const Chat = () => {
     }
   );
 
+  const { mutate: mutateDeleteChat } = useMutation(
+    () => useAxiosChats.delete(`chats/${chat}`),
+  );
+
+  const handleDeleteChat = () => {
+    mutateDeleteChat();
+    Toast({
+      title: "Chat deleted",
+      description: "The chat has been deleted",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+
+    setTimeout(() => {
+      navigate("/chats");
+    }, 1000);
+  };
+
   return (
     <>
       <Text
@@ -53,6 +75,13 @@ const Chat = () => {
               : isErrorChat && (
               <AlertMsg status="error" msg="Error fetching the messages" />
             )}
+            <Button
+              colorScheme="red"
+              variant="outline"
+              onClick={handleDeleteChat}
+            >
+              Delete chat
+            </Button>
       </Text>
       {isLoading && <Spinner />}
       {data

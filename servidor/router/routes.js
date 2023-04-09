@@ -3,6 +3,7 @@ import { client } from "../db.js";
 import { ObjectId } from "mongodb";
 
 const router = express.Router();
+
 //Get Petitions
 router.get("/posts", async (req, res) => {
     const postsCollection = client.db("redsocial").collection("posts");
@@ -88,6 +89,12 @@ router.delete("/comments/:_id", async (req, res) => {
 router.delete("/messages/:_id", async (req, res) => {
     const messagesCollection = client.db("redsocial").collection("messages");
     const result = await messagesCollection.deleteOne({ _id: new ObjectId(req.params._id) });
+    res.json(result);
+});
+
+router.delete("/chats/:_id", async (req, res) => {
+    const chatsCollection = client.db("redsocial").collection("chats");
+    const result = await chatsCollection.deleteOne({ _id: new ObjectId(req.params._id) });
     res.json(result);
 });
 

@@ -1,14 +1,19 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useParams, useNavigate } from "react-router-dom";
+import { useQuery, useMutation } from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
-import { Box, Spinner, Divider, Stack } from "@chakra-ui/react";
+import { Box, Spinner, Divider, Stack, Button, useToast } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import AddComment from "../components/AddComment";
 import Comment from "../components/Comment";
 import AlertMsg from "../components/AlertMsg";
 
 const Post = () => {
+
+  const navigate = useNavigate();
+
+  const Toast = useToast();
+
   const { post } = useParams();
 
   const { data, isLoading, isError, isRefetching } = useQuery(
@@ -37,6 +42,25 @@ const Post = () => {
   const comments = dataComments?.filter(
     (comment) => comment.postId === post
   );
+
+  const { mutate: mutateDeletePost, isError: isErrorPost, isLoading: isLoadingPost } = useMutation(() =>
+    useAxiosPosts.delete(`posts/${post}`)
+  );
+
+  const handleDeletePost = () => {
+    mutateDeletePost();
+    Toast({
+      title: "Post deleted",
+      description: "The post has been deleted",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  };
 
   return (
     <Box
@@ -91,6 +115,18 @@ const Post = () => {
       ) : (
         isError && <AlertMsg status="error" msg="Post not founded" />
       )}
+        <Button
+          colorScheme="red"
+          onClick={handleDeletePost}
+        >
+          {
+            isLoadingPost
+              ? <Spinner />
+              : isError
+              ? "Error"
+              : "Delete Post"
+          }
+        </Button>
     </Box>
   );
 };

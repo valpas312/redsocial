@@ -6,7 +6,7 @@ import {
   Spinner
 } from "@chakra-ui/react";
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery} from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
 import { Link } from "react-router-dom";
 
