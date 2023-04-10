@@ -1,7 +1,4 @@
 import {
-  Alert,
-  AlertIcon,
-  Box,
   Link as ChakraLink,
   Spinner
 } from "@chakra-ui/react";
@@ -9,6 +6,9 @@ import React from "react";
 import { useQuery} from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
 import { Link } from "react-router-dom";
+import ContainerStyled from "../components/styles/ContainerStyled";
+import CardsContainer from "../components/styles/CardsContainer";
+import AlertMsg from "../components/AlertMsg";
 
 const Posts = () => {
   const { data, isLoading, isError } = useQuery("posts", () =>
@@ -17,42 +17,19 @@ const Posts = () => {
 
   return (
     <>
-      <Box
-        w="100vw"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        gap="2rem"
-        flexWrap="wrap"
-      >
+      <ContainerStyled/>
         {isLoading && <Spinner />}
         {data
           ? data.map((post) => (
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                gap="1rem"
-                w="60%"
-                h="30%"
-                p="1rem"
-                border="1px solid black"
-                borderRadius="5px"
-                key={post._id}
-              >
+              <CardsContainer>
                 <ChakraLink as={Link} to={`/posts/${post._id}`}>
                   {post.title}
                 </ChakraLink>
                 <p>{ post.description.slice(0, 100)+'...' }</p>
-              </Box>
+              </CardsContainer>
             ))
           : isError && (
-              <Alert status="error">
-                <AlertIcon />
-                There was an error fetching the data
-              </Alert>
+              <AlertMsg status="error" msg="There was an error fetching the data" />
             )}
         {data && data.length === 0 && <p>No posts yet</p>}
         {data && (
@@ -60,7 +37,7 @@ const Posts = () => {
             Add Post
           </ChakraLink>
         )}
-      </Box>
+      <ContainerStyled/>
     </>
   );
 };

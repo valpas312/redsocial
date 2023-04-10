@@ -1,6 +1,8 @@
 import React, {useContext} from 'react'
 import {contexto} from '../App'
-import { Box, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
+import ContainerStyled from '../components/styles/ContainerStyled'
+import CardsContainer from '../components/styles/CardsContainer'
 
 const Perfil = () => {
 
@@ -8,16 +10,7 @@ const Perfil = () => {
 
     console.log(user)
 
-  return <Box
-    w="100%"
-    h="100%"
-    display="flex"
-    flexDirection="column"
-    justifyContent="center"
-    alignItems="center"
-    gap="1rem"
-    textAlign="center"
-  >
+  return <ContainerStyled>
     <Text
       fontSize="3xl"
       fontWeight="bold"
@@ -25,24 +18,12 @@ const Perfil = () => {
       mt="2rem"
       mb="2rem"
     >Perfil</Text>
-    <Box
-      h="100%"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      gap="1rem"
-      textAlign="center"
-      shadow="md"
-      borderWidth="1px"
-      borderRadius="md"
-      p="1rem"
-    >
+    <CardsContainer>
       <Text>ID: {user._id}</Text>
       <Text>Nombre: {user.name}</Text>
       <Text>Correo: {user.email}</Text>
-    </Box>
-  </Box>
+    </CardsContainer>
+  </ContainerStyled>
 }
 
 export default Perfil

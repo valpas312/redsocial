@@ -2,7 +2,10 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { useAxiosChats } from '../hooks/useAxios'
 import { Link } from 'react-router-dom'
-import { Box, Spinner, Alert, AlertIcon, Link as ChakraLink, Text } from '@chakra-ui/react'
+import { Spinner, Link as ChakraLink, Text } from '@chakra-ui/react'
+import ContainerStyled from '../components/styles/ContainerStyled'
+import CardsContainer from '../components/styles/CardsContainer'
+import AlertMsg from '../components/AlertMsg'
 
 const Chats = () => {
 
@@ -21,49 +24,29 @@ const Chats = () => {
         mt="2rem"
         mb="2rem"
     >Chats</Text>
-    <Box
-        w="100vw"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        gap="2rem"
-        flexWrap="wrap"
-        >
+    <ContainerStyled>
         {isLoading && <Spinner />}
         {data
         ? data.map(chat => (
-            <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap="1rem"
-            w="60%"
-            h="30%"
-            p="1rem"
-            border="1px solid black"
-            borderRadius="5px"
-            key={chat._id}
-            >
+            <CardsContainer>
             <ChakraLink as={Link} to={`/chats/${chat._id}`}>
                 {chat.name}
             </ChakraLink>
-            </Box>
+            </CardsContainer>
         ))
         : isError && (
-            <Alert status="error">
-            <AlertIcon />
-            There was an error fetching the data
-            </Alert>
+            <AlertMsg status="error" msg="There was an error fetching the data" />
         )}
         {data && data.length === 0 && <p>No chats yet</p>}
         {data && (
-        <ChakraLink as={Link} to="/chats/add">
+        <ChakraLink 
+        as={Link} to="/chats/add"
+
+        >
             Add Chat
         </ChakraLink>
         )}
-    </Box>
+    </ContainerStyled>
   </>
 }
 
