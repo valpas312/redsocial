@@ -1,14 +1,14 @@
 import {
-  Link as ChakraLink,
+  Button,
   Spinner
 } from "@chakra-ui/react";
 import React from "react";
 import { useQuery} from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
-import { Link } from "react-router-dom";
 import ContainerStyled from "../components/styles/ContainerStyled";
 import CardsContainer from "../components/styles/CardsContainer";
 import AlertMsg from "../components/AlertMsg";
+import { Link } from "react-router-dom";
 
 const Posts = () => {
   const { data, isLoading, isError } = useQuery("posts", () =>
@@ -22,9 +22,9 @@ const Posts = () => {
         {data
           ? data.map((post) => (
               <CardsContainer>
-                <ChakraLink as={Link} to={`/posts/${post._id}`}>
+                <Button as={Link} to={`/posts/${post._id}`}>
                   {post.title}
-                </ChakraLink>
+                </Button>
                 <p>{ post.description.slice(0, 100)+'...' }</p>
               </CardsContainer>
             ))
@@ -33,9 +33,14 @@ const Posts = () => {
             )}
         {data && data.length === 0 && <p>No posts yet</p>}
         {data && (
-          <ChakraLink as={Link} to="/posts/add">
+          <Button
+          as={Link}
+          to="/posts/add"
+          colorScheme="teal"
+          variant="outline"
+          >
             Add Post
-          </ChakraLink>
+          </Button>
         )}
       <ContainerStyled/>
     </>

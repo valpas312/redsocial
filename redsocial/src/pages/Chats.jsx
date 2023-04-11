@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from 'react-query'
 import { useAxiosChats } from '../hooks/useAxios'
 import { Link } from 'react-router-dom'
-import { Spinner, Link as ChakraLink, Text } from '@chakra-ui/react'
+import { Button, Spinner, Text } from '@chakra-ui/react'
 import ContainerStyled from '../components/styles/ContainerStyled'
 import CardsContainer from '../components/styles/CardsContainer'
 import AlertMsg from '../components/AlertMsg'
@@ -29,9 +29,9 @@ const Chats = () => {
         {data
         ? data.map(chat => (
             <CardsContainer>
-            <ChakraLink as={Link} to={`/chats/${chat._id}`}>
+            <Button as={Link} to={`/chats/${chat._id}`}>
                 {chat.name}
-            </ChakraLink>
+            </Button>
             </CardsContainer>
         ))
         : isError && (
@@ -39,12 +39,13 @@ const Chats = () => {
         )}
         {data && data.length === 0 && <p>No chats yet</p>}
         {data && (
-        <ChakraLink 
+        <Button 
         as={Link} to="/chats/add"
-
+        colorScheme="teal"
+        variant="outline"
         >
             Add Chat
-        </ChakraLink>
+        </Button>
         )}
     </ContainerStyled>
   </>

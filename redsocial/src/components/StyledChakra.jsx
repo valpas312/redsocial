@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 
 export const BoxStyled = ({ children }) => {
   return (
@@ -14,5 +14,17 @@ export const BoxStyled = ({ children }) => {
     >
       {children}
     </Box>
+  );
+};
+
+export const ButtonCardStyled = ({ children }) => {
+  return <Button>{children}</Button>;
+};
+
+export const AddButtonStyled = ({ children}) => {
+  return (
+    <Button colorScheme="teal" variant="outline" size="sm">
+      {children}
+    </Button>
   );
 };
