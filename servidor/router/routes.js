@@ -98,5 +98,24 @@ router.delete("/chats/:_id", async (req, res) => {
     res.json(result);
 });
 
+//put petitions
+router.put("/posts/:_id", async (req, res) => {
+    const postsCollection = client.db("redsocial").collection("posts");
+    const result = await postsCollection.updateOne({ _id: new ObjectId(req.params._id) }, { $set: req.body });
+    res.json(result);
+});
+
+router.put("/chats/:_id", async (req, res) => {
+    const chatsCollection = client.db("redsocial").collection("chats");
+    const result = await chatsCollection.updateOne({ _id: new ObjectId(req.params._id) }, { $set: req.body });
+    res.json(result);
+});
+
+router.put("/messages/:_id", async (req, res) => {
+    const messagesCollection = client.db("redsocial").collection("messages");
+    const result = await messagesCollection.updateOne({ _id: new ObjectId(req.params._id) }, { $set: req.body });
+    res.json(result);
+});
+
 //export
 export default router;

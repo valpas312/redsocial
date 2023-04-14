@@ -10,6 +10,8 @@ import Post from "../pages/Post";
 import Chats from "../pages/Chats";
 import AddChats from "../pages/AddChats";
 import Chat from "../pages/Chat";
+import EditChat from "../pages/EditChat";
+import EditPost from "../pages/EditPost";
 
 import NavBar from "./NavBar";
 
@@ -44,6 +46,9 @@ const Router = () => {
           />
           <Route path="/perfil" element={useElement(<Perfil />, <Login />)} />
           <Route path="*" element={<NotFound />} />
+
+          <Route path="/edit/chat/:chat" element={<EditChat />} />
+          <Route path="/edit/post/:post" element={<EditPost />} />
         </Routes>
       </BrowserRouter>
     </>
