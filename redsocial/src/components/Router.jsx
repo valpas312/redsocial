@@ -47,8 +47,8 @@ const Router = () => {
           <Route path="/perfil" element={useElement(<Perfil />, <Login />)} />
           <Route path="*" element={<NotFound />} />
 
-          <Route path="/edit/chat/:chat" element={<EditChat />} />
-          <Route path="/edit/post/:post" element={<EditPost />} />
+          <Route path="/edit/chat/:chat" element={useElement(<EditChat/>, <Login/>)} />
+          <Route path="/edit/post/:post" element={useElement(<EditPost/>, <Login/>)} />
         </Routes>
       </BrowserRouter>
     </>

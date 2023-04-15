@@ -1,16 +1,15 @@
-import { Box, Button, FormLabel, Input, Spinner, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useMutation } from "react-query";
 import AlertMsg from "../components/AlertMsg";
 import { useAxiosChats } from "../hooks/useAxios";
+import { useNavigate } from "react-router-dom";
 
 const AddChats = () => {
-  const { mutate, isLoading, isError } = useMutation((newChat) => {
-    useAxiosChats.post("chats", newChat).then((res) => res.data),
-      {
-        refetchOnMount: true,
-        refetchInterval: 500,
-      };
+
+  const navigate = useNavigate();
+
+  const { mutate, isError } = useMutation((newChat) => {
+    useAxiosChats.post("chats", newChat).then((res) => res.data);
   });
 
   const handleSubmit = (e) => {
@@ -20,7 +19,7 @@ const AddChats = () => {
     mutate({
       name: name.value,
     });
-    e.target.reset();
+    navigate("/chats");
   };
 
   return (
@@ -53,8 +52,8 @@ const AddChats = () => {
           w="60%"
         >
         <FormLabel htmlFor="name">Chat name</FormLabel>
-        <Input type="text" id="name" />
-        <Button type="submit">{isLoading ? <Spinner /> : "Add"}</Button>
+        <Input required type="text" id="name" />
+        <Button>Add</Button>
       </Box>
       {isError && <AlertMsg status="error" msg="Error adding the chat" />}
       </Box>

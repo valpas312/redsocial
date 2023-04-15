@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQuery } from 'react-query'
 import { useAxiosChats } from '../hooks/useAxios'
 import { Link } from 'react-router-dom'
@@ -11,11 +10,11 @@ const Chats = () => {
 
     const { data, isLoading, isError } = useQuery('chats', () => useAxiosChats
     .get('chats')
-    .then(res => res.data)
-    )
-
-    console.log(data)
-
+    .then(res => res.data),{
+        refetchOnMount: true,
+        refetchInterval: 1000,
+    }
+    ) 
   return <>
     <Text
         fontSize="3xl"
@@ -31,6 +30,11 @@ const Chats = () => {
             <CardsContainer>
             <Button as={Link} to={`/chats/${chat._id}`}>
                 {chat.name}
+            </Button>
+            <Button as={Link} to={`/edit/chat/${chat._id}`}
+            colorScheme="teal"
+            >
+                Edit chat
             </Button>
             </CardsContainer>
         ))
