@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import useAxiosUsers from "../hooks/useAxios";
 import { Box, Button, Input, Text, useMediaQuery, useToast } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";

@@ -27,7 +27,7 @@ const Chats = () => {
         {isLoading && <Spinner />}
         {data
         ? data.map(chat => (
-            <CardsContainer>
+            <CardsContainer key={chat._id} >
             <Button as={Link} to={`/chats/${chat._id}`}>
                 {chat.name}
             </Button>

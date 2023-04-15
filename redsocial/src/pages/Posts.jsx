@@ -2,7 +2,6 @@ import {
   Button,
   Spinner
 } from "@chakra-ui/react";
-import React from "react";
 import { useQuery} from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
 import ContainerStyled from "../components/styles/ContainerStyled";
@@ -21,7 +20,7 @@ const Posts = () => {
         {isLoading && <Spinner />}
         {data
           ? data.map((post) => (
-              <CardsContainer>
+              <CardsContainer key={post._id} >
                 <Button as={Link} to={`/posts/${post._id}`}>
                   {post.title}
                 </Button>

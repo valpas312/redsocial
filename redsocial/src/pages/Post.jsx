@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "react-query";
 import { useAxiosPosts } from "../hooks/useAxios";
@@ -126,6 +125,20 @@ const Post = () => {
               ? "Error"
               : "Delete Post"
           }
+        </Button>
+        <Button
+        as={Link}
+        isDisabled={
+          isLoadingPost
+            ? true
+            : isErrorPost
+            ? true
+            : false
+        }
+        to={`/edit/post/${post}`}
+        colorScheme="teal"
+        >
+          Edit Post
         </Button>
     </Box>
   );
